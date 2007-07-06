@@ -2,9 +2,9 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.4
-Release:	%mkrel 2
-License:	GPL
+Version:	2.0.5
+Release:	%mkrel 1
+License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/alpha/gnupg/%{pkgname}-%{version}.tar.bz2
@@ -15,8 +15,8 @@ BuildRequires:	openldap-devel
 BuildRequires:  sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
 BuildRequires:	libgcrypt-devel >= 1.2.0
-BuildRequires:	libassuan-devel >= 1.0.1
-BuildRequires:	libksba-devel >= 1.0.0
+BuildRequires:	libassuan-devel >= 1.0.2
+BuildRequires:	libksba-devel >= 1.0.2
 BuildRequires:	opensc-devel >= 0.8.0
 BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
@@ -49,7 +49,9 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 autoconf
 %configure2_5x \
 	--libexecdir=%{_libdir}/gnupg2
-%make
+
+# no parallel make (v2.0.5 at least)
+make
 
 # all tests must pass on i586 and x86_64
 make check
