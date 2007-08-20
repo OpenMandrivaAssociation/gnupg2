@@ -24,9 +24,9 @@ BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:  docbook-utils
 BuildRequires:  libreadline-devel
-Requires(post):	/sbin/install-info
-Requires(postun): /sbin/install-info
-Requires:	/sbin/install-info
+Requires(post):	info-install
+Requires(postun): info-install
+Requires:	info-install
 Obsoletes:	newpg
 Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
