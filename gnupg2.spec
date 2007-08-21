@@ -25,7 +25,7 @@ BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:  docbook-utils
 BuildRequires:  libreadline-devel
 Requires(post):	info-install
-Requires(postun): info-install
+Requires(preun): info-install
 Requires:	info-install
 Obsoletes:	newpg
 Provides:	newpg = %{version}-%{release}
@@ -73,7 +73,7 @@ rm -rf %{buildroot}%{_datadir}/gnupg
 %post
 %_install_info gnupg.info
 
-%postun
+%preun
 %_remove_install_info gnupg.info
 
 %clean
