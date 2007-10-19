@@ -2,8 +2,8 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.5
-Release:	%mkrel 3
+Version:	2.0.7
+Release:	%mkrel 1
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -11,8 +11,6 @@ Source0:	ftp://ftp.gnupg.org/gcrypt/alpha/gnupg/%{pkgname}-%{version}.tar.bz2
 Source1:	%{SOURCE0}.sig
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 Patch1:		gnupg-1.4.2.2-CVE-2006-3082.patch
-# http://bugs.gentoo.org/show_bug.cgi?id=184484
-Patch2:         gnupg-2.0.5-time.patch
 BuildRequires:	openldap-devel
 BuildRequires:  sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
@@ -41,22 +39,25 @@ It includes an advanced key management facility and is compliant
 with the proposed OpenPGP Internet standard as described in RFC2440.
 
 %prep
-
 %setup -q -n %{pkgname}-%{version}
 %patch0 -p1 -b .ImageMagick
 %patch1 -p1 -b .cve-2006-3082
-%patch2 -p1 -b .time
 
 %build
 %serverbuild
 autoconf
 %configure2_5x \
-	--libexecdir=%{_libdir}/gnupg2
+	--libexecdir=%{_libdir}/gnupg2 \
+	--enable-symcryptrun \
+	--disable-rpath \
+	--with-capabilities \
+	--with-pkits-tests
 
 # no parallel make (v2.0.5 at least)
-make
+%make
 
 # all tests must pass on i586 and x86_64
+%check
 make check
 
 %install
@@ -94,9 +95,11 @@ rm -rf %{buildroot}
 %{_bindir}/gpgparsemail
 %{_bindir}/gpg2
 %{_bindir}/gpgv2
+%{_bindir}/symcryptrun
 %{_sbindir}/addgnupghome
 %{_sbindir}/applygnupgdefaults
 %dir %{_libdir}/gnupg2
+%{_libdir}/gnupg2/gpg-check-pattern
 %{_libdir}/gnupg2/gpg-preset-passphrase
 %{_libdir}/gnupg2/gpg-protect-tool
 %{_libdir}/gnupg2/gnupg-pcsc-wrapper
@@ -119,5 +122,3 @@ rm -rf %{buildroot}
 %{_mandir}/man1/watchgnupg.1*
 %{_mandir}/man8/addgnupghome.8*
 %{_mandir}/man8/applygnupgdefaults.8*
-
-
