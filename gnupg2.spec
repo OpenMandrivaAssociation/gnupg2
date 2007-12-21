@@ -30,6 +30,7 @@ Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
 Requires:	pinentry
 Requires:	gnupg
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 GnuPG is GNU's tool for secure communication and data storage.
