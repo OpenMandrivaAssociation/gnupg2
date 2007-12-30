@@ -2,8 +2,8 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.7
-Release:	%mkrel 4
+Version:	2.0.8
+Release:	%mkrel 1
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -22,6 +22,10 @@ BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:  docbook-utils
 BuildRequires:  libreadline-devel
+BuildRequires:	libtermcap-devel
+BuildRequires:	libcurl-devel
+BuildRequires:	libusb-devel
+BuildRequires:	bzip2-devel
 Requires(post):	info-install
 Requires(preun): info-install
 Requires:	info-install
@@ -45,7 +49,9 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 
 %build
 %serverbuild
-autoconf
+
+./autogen.sh
+
 %configure2_5x \
 	--libexecdir=%{_libdir}/gnupg2 \
 	--enable-symcryptrun \
@@ -82,7 +88,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc COPYING README NEWS THANKS TODO ChangeLog
+%doc README NEWS THANKS TODO ChangeLog
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
