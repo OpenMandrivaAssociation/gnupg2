@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.9
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -18,7 +18,6 @@ BuildRequires:	libgpg-error-devel >= 1.4
 BuildRequires:	libgcrypt-devel >= 1.2.0
 BuildRequires:	libassuan-devel >= 1.0.2
 BuildRequires:	libksba-devel >= 1.0.2
-BuildRequires:	opensc-devel >= 0.8.0
 BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:  docbook-utils
