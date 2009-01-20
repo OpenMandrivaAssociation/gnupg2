@@ -10,7 +10,6 @@ URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
 Source1:	%{SOURCE0}.sig
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
-Patch2:		gnupg-2.0.9-gcc43.diff
 BuildRequires:	openldap-devel
 BuildRequires:  sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
@@ -44,7 +43,6 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 %prep
 %setup -q -n %{pkgname}-%{version}
 %patch0 -p1 -b .ImageMagick
-%patch2 -p0 -b .gcc43
 
 %build
 %serverbuild
@@ -74,6 +72,8 @@ rm -rf %{buildroot}
 # identical for both gnupg 1/2, except for comment
 rm -rf %{buildroot}%{_datadir}/gnupg
 
+rm -rf %{buildroot}%{_docdir}/gnupg
+
 %find_lang %{name}
 
 %post
@@ -88,6 +88,8 @@ rm -rf %{buildroot}
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc README NEWS THANKS TODO ChangeLog
+%doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS doc/faq.html
+%doc doc/examples
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
@@ -116,6 +118,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/gpg-agent.1*
 %{_mandir}/man1/gpg-connect-agent.1*
 %{_mandir}/man1/gpg-preset-passphrase.1*
+%{_mandir}/man1/gpg-zip.1*
 %{_mandir}/man1/gpg2.1*
 %{_mandir}/man1/gpgconf.1*
 %{_mandir}/man1/gpgparsemail.1*
