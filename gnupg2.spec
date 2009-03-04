@@ -2,8 +2,8 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.10
-Release:	%mkrel 2
+Version:	2.0.11
+Release:	%mkrel 1
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -24,6 +24,7 @@ BuildRequires:	libtermcap-devel
 BuildRequires:	libcurl-devel
 BuildRequires:	libusb-devel
 BuildRequires:	bzip2-devel
+BuildRequires:	libadns-devel
 Requires(post):	info-install
 Requires(preun): info-install
 Requires:	info-install
@@ -113,6 +114,7 @@ rm -rf %{buildroot}
 %{_libdir}/gnupg2/gpg2keys_curl
 %{_libdir}/gnupg2/gpg2keys_finger
 %{_libdir}/gnupg2/gpg2keys_hkp
+%{_libdir}/gnupg2/gpg2keys_kdns
 %{_libdir}/gnupg2/gpg2keys_ldap
 %{_infodir}/gnupg.info*
 %{_mandir}/man1/gpg-agent.1*
