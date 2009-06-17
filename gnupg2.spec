@@ -1,9 +1,13 @@
+%define name    gnupg2
+%define version 2.0.12
+%define release %mkrel 1
+
 %define pkgname gnupg
 
 Summary:	GNU privacy guard - a free PGP replacement
-Name:		gnupg2
-Version:	2.0.11
-Release:	%mkrel 1
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
