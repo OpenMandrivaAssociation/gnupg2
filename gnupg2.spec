@@ -1,6 +1,6 @@
 %define name    gnupg2
 %define version 2.0.12
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define pkgname gnupg
 
@@ -13,6 +13,8 @@ Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
 Source1:	%{SOURCE0}.sig
+Source2:	gpg-agent-X11-xinit.d
+Source3:	gpg-agent-profile.d
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 BuildRequires:	openldap-devel
 BuildRequires:  sendmail-command
@@ -72,6 +74,10 @@ make check
 rm -rf %{buildroot}
 
 %makeinstall_std
+install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
+cp %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
+install -d %{buildroot}/%{_sysconfdir}/profile.d
+cp %{SOURCE3} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
@@ -95,6 +101,8 @@ rm -rf %{buildroot}
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS doc/faq.html
 %doc doc/examples
+%attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
+%attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
