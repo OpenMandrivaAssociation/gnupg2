@@ -1,6 +1,6 @@
 %define name    gnupg2
 %define version 2.0.12
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define pkgname gnupg
 
@@ -75,9 +75,9 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
-cp %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
+install %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
 install -d %{buildroot}/%{_sysconfdir}/profile.d
-cp %{SOURCE3} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
+install %{SOURCE3} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
