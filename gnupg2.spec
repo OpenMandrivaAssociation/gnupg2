@@ -1,5 +1,5 @@
 %define name    gnupg2
-%define version 2.0.13
+%define version 2.0.14
 %define release %mkrel 1
 
 %define pkgname gnupg
