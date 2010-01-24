@@ -31,6 +31,7 @@ BuildRequires:	libcurl-devel
 BuildRequires:	libusb-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	libadns-devel
+BuildRequires:	libassuan-devel
 Requires(post):	info-install
 Requires(preun): info-install
 Requires:	info-install
