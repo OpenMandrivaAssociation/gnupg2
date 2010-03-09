@@ -1,5 +1,5 @@
 %define name    gnupg2
-%define version 2.0.14
+%define version 2.0.15
 %define release %mkrel 1
 
 %define pkgname gnupg
@@ -13,8 +13,7 @@ Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
 Source1:	%{SOURCE0}.sig
-Source2:	gpg-agent-X11-xinit.d
-Source3:	gpg-agent-profile.d
+Source2:	gpg-agent.sh
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 BuildRequires:	openldap-devel
 BuildRequires:  sendmail-command
@@ -78,7 +77,7 @@ rm -rf %{buildroot}
 install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
 install %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
 install -d %{buildroot}/%{_sysconfdir}/profile.d
-install %{SOURCE3} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
+install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
