@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.15
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -13,15 +13,15 @@ Source2:	gpg-agent.sh
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 Patch1:		gnupg-2.0.14-tests-s2kcount.patch
 BuildRequires:	openldap-devel
-BuildRequires:  sendmail-command
+BuildRequires:	sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
 BuildRequires:	libgcrypt-devel >= 1.2.0
 BuildRequires:	libassuan-devel >= 1.0.2
 BuildRequires:	libksba-devel >= 1.0.2
 BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
-BuildRequires:  docbook-utils
-BuildRequires:  libreadline-devel
+BuildRequires:	docbook-utils
+BuildRequires:	libreadline-devel
 BuildRequires:	libtermcap-devel
 BuildRequires:	libcurl-devel
 BuildRequires:	libusb-devel
