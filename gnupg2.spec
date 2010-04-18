@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.15
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
