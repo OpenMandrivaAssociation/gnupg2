@@ -68,7 +68,7 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 %check
 [[ -n "$GPG_AGENT_INFO" ]] || eval `./agent/gpg-agent --use-standard-socket --daemon --write-env-file gpg-agent-info`
 make check
-kill $GPG_AGENT_INFO
+kill -0 `cut -d: -f 2 gpg-agent-info`
 rm -f gpg-agent-info
 
 %install
