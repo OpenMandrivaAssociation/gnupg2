@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.15
-Release:	%mkrel 11
+Release:	%mkrel 12
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -66,9 +66,9 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 
 # all tests must pass on i586 and x86_64
 %check
-[[ -n "$GPG_AGENT_INFO" ]] || eval `./agent/gpg-agent --use-standard-socket --daemon --write-env-file gpg-agent-info`
+[[ -n "$GPG_AGENT_INFO" ]] || eval `./agent/gpg-agent --daemon --write-env-file gpg-agent-info`
 make check
-kill -0 `cut -d: -f 2 gpg-agent-info`
+[[ -a gpg-agent-info ]] && kill -0 `cut -d: -f 2 gpg-agent-info`
 rm -f gpg-agent-info
 
 %install
