@@ -1,4 +1,5 @@
 %define pkgname gnupg
+%define subrel 1
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
