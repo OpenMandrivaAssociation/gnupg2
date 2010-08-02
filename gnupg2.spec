@@ -3,13 +3,14 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.16
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
 Source1:	%{SOURCE0}.sig
 Source2:	gpg-agent.sh
+Source3:	sysconfig-gnupg2
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 Patch1:		gnupg-2.0.14-tests-s2kcount.patch
 Patch2:		gnupg-gpgsm-sec-fix
@@ -81,6 +82,8 @@ install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
 install %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
 install -d %{buildroot}/%{_sysconfdir}/profile.d
 install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
+install -d %{buildroot}/%{_sysconfdir}/sysconfig
+install %{SOURCE3} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
@@ -106,6 +109,7 @@ rm -rf %{buildroot}
 %doc doc/examples
 %attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
+%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
