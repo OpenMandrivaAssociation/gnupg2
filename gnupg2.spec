@@ -78,12 +78,13 @@ rm -f gpg-agent-info
 rm -rf %{buildroot}
 
 %makeinstall_std
-install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
-install %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
+#Remove: #60298
+#install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
+#install %{SOURCE2} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
 install -d %{buildroot}/%{_sysconfdir}/profile.d
 install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
-install -d %{buildroot}/%{_sysconfdir}/sysconfig
-install %{SOURCE3} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
+#install -d %{buildroot}/%{_sysconfdir}/sysconfig
+#install %{SOURCE3} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
@@ -107,9 +108,10 @@ rm -rf %{buildroot}
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS doc/faq.html
 %doc doc/examples
-%attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
+# Remove: #60298
+#%attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
-%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
+#%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
