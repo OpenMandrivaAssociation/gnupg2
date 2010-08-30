@@ -70,7 +70,7 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 
 # all tests must pass on i586 and x86_64
 %check
-[[ -n "$GPG_AGENT_INFO" ]] || eval `./agent/gpg-agent --daemon --write-env-file gpg-agent-info`
+[[ -n "$GPG_AGENT_INFO" ]] || eval `./agent/gpg-agent --use-standard-socket --daemon --write-env-file gpg-agent-info`
 make check
 [[ -a gpg-agent-info ]] && kill -0 `cut -d: -f 2 gpg-agent-info`
 rm -f gpg-agent-info
@@ -109,10 +109,9 @@ rm -rf %{buildroot}
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS doc/faq.html
 %doc doc/examples
-# Remove: #60298
-#%attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
-#%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
+%attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
+%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
