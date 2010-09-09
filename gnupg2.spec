@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.16
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -111,7 +111,7 @@ rm -rf %{buildroot}
 %doc doc/examples
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
 %attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
-%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
+%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
