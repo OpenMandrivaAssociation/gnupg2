@@ -138,7 +138,6 @@ rm -rf %{buildroot}
 %{_libdir}/gnupg2/gpg2keys_curl
 %{_libdir}/gnupg2/gpg2keys_finger
 %{_libdir}/gnupg2/gpg2keys_hkp
-%{_libdir}/gnupg2/gpg2keys_kdns
 %{_libdir}/gnupg2/gpg2keys_ldap
 %{_infodir}/gnupg.info*
 %{_mandir}/man1/gpg-agent.1*
