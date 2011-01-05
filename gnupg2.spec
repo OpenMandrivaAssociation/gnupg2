@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.16
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -29,7 +29,6 @@ BuildRequires:	libtermcap-devel
 BuildRequires:	libcurl-devel
 BuildRequires:	libusb-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	libadns-devel
 BuildRequires:	libassuan-devel
 Requires(post):	info-install
 Requires(preun): info-install
@@ -63,6 +62,7 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 	--enable-symcryptrun \
 	--disable-rpath \
 	--without-capabilities \
+	--with-adns=no \
 	--with-pkits-tests
 
 # no parallel make (v2.0.5 at least)
