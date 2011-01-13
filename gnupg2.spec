@@ -2,8 +2,8 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.16
-Release:	%mkrel 6
+Version:	2.0.17
+Release:	%mkrel 1
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -14,7 +14,6 @@ Source3:	gpg-agent-xinit.sh
 Source4:	sysconfig-gnupg2
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 Patch1:		gnupg-2.0.14-tests-s2kcount.patch
-Patch2:		gnupg-gpgsm-sec-fix
 BuildRequires:	openldap-devel
 BuildRequires:	sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
@@ -50,7 +49,6 @@ with the proposed OpenPGP Internet standard as described in RFC2440.
 %setup -q -n %{pkgname}-%{version}
 %patch0 -p1 -b .ImageMagick
 %patch1 -p1
-%patch2 -p0
 
 %build
 %serverbuild
@@ -110,7 +108,7 @@ rm -rf %{buildroot}
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc README NEWS THANKS TODO ChangeLog
-%doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS doc/faq.html
+%doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS 
 %doc doc/examples
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
 %attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
