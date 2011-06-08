@@ -3,7 +3,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.17
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -78,12 +78,12 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 #Remove: #60298
-install -d %{buildroot}/%{_sysconfdir}/profile.d
-install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
-install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
-install %{SOURCE3} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
-install -d %{buildroot}/%{_sysconfdir}/sysconfig
-install %{SOURCE4} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
+#install -d %{buildroot}/%{_sysconfdir}/profile.d
+#install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
+#install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
+#install %{SOURCE3} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
+#install -d %{buildroot}/%{_sysconfdir}/sysconfig
+#install %{SOURCE4} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
 
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
