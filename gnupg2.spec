@@ -1,4 +1,8 @@
-%define pkgname gnupg
+%define	pkgname	gnupg
+
+%define build_gpgagentscript	0
+%{?_without_gpgagentscript:	%global build_gpgagentscript 0}
+%{?_with_gpgagentscript:	%global build_gpgagentscript 1}
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
@@ -78,13 +82,14 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 #Remove: #60298
-#install -d %{buildroot}/%{_sysconfdir}/profile.d
-#install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
-#install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
-#install %{SOURCE3} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
-#install -d %{buildroot}/%{_sysconfdir}/sysconfig
-#install %{SOURCE4} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
-
+%if %{build_gpgagentscript}
+install -d %{buildroot}/%{_sysconfdir}/profile.d
+install %{SOURCE2} %{buildroot}/%{_sysconfdir}/profile.d/gpg-agent.sh
+install -d %{buildroot}/%{_sysconfdir}/X11/xinit.d
+install %{SOURCE3} %{buildroot}/%{_sysconfdir}/X11/xinit.d/gpg-agent
+install -d %{buildroot}/%{_sysconfdir}/sysconfig
+install %{SOURCE4} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
+%endif
 # remove this from package because the content of options.skel is the
 # identical for both gnupg 1/2, except for comment
 rm -rf %{buildroot}%{_datadir}/gnupg
@@ -110,9 +115,11 @@ rm -rf %{buildroot}
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS 
 %doc doc/examples
+%if %{build_gpgagentscript}
 %attr(0755,root,root) %{_sysconfdir}/profile.d/gpg-agent.sh
 %attr(0755,root,root) %{_sysconfdir}/X11/xinit.d/gpg-agent
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%endif
 %attr(4755,root,root) %{_bindir}/gpgsm
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
