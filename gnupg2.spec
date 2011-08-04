@@ -18,6 +18,7 @@ Source3:	gpg-agent-xinit.sh
 Source4:	sysconfig-gnupg2
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
 Patch1:		gnupg-2.0.14-tests-s2kcount.patch
+BuildRequires:	automake
 BuildRequires:	openldap-devel
 BuildRequires:	sendmail-command
 BuildRequires:	libgpg-error-devel >= 1.4
