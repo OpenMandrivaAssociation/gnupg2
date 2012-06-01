@@ -6,13 +6,13 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.18
+Version:	2.0.19
 Release:	%mkrel 1
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
-Source1:	%{SOURCE0}.sig
+Source1:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2.sig
 Source2:	gpg-agent.sh
 Source3:	gpg-agent-xinit.sh
 Source4:	sysconfig-gnupg2
@@ -33,10 +33,6 @@ BuildRequires:	libtermcap-devel
 BuildRequires:	libcurl-devel
 BuildRequires:	libusb-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	libassuan-devel
-Requires(post):	info-install
-Requires(preun): info-install
-Requires:	info-install
 Obsoletes:	newpg
 Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
@@ -101,12 +97,6 @@ rm -rf %{buildroot}%{_docdir}/gnupg
 rm %{buildroot}%{_mandir}/man1/gpg-zip.1
 
 %find_lang %{name}
-
-%post
-%_install_info gnupg.info
-
-%preun
-%_remove_install_info gnupg.info
 
 %clean
 rm -rf %{buildroot}
