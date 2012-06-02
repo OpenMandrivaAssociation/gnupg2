@@ -7,7 +7,7 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.19
-Release:	%mkrel 2
+Release:	2
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
@@ -28,17 +28,16 @@ BuildRequires:	libksba-devel >= 1.0.2
 BuildRequires:	zlib-devel
 BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:	docbook-utils
-BuildRequires:	libreadline-devel
-BuildRequires:	libtermcap-devel
-BuildRequires:	libcurl-devel
-BuildRequires:	libusb-devel
+BuildRequires:	readline-devel
+BuildRequires:	termcap-devel
+BuildRequires:	curl-devel
+BuildRequires:	pkgconfig(libusb)
 BuildRequires:	bzip2-devel
 Obsoletes:	newpg
 Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
 Requires:	pinentry
 Requires:	gnupg
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 GnuPG is GNU's tool for secure communication and data storage.
@@ -75,8 +74,6 @@ make check
 rm -f gpg-agent-info
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 #Remove: #60298
 %if %{build_gpgagentscript}
@@ -98,11 +95,7 @@ rm %{buildroot}%{_mandir}/man1/gpg-zip.1
 
 %find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS 
 %doc doc/examples
