@@ -7,8 +7,8 @@
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
 Version:	2.0.19
-Release:	2
-License:	GPLv3
+Release:	3
+License:	GPLv3+
 Group:		File tools
 URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
@@ -33,8 +33,6 @@ BuildRequires:	termcap-devel
 BuildRequires:	curl-devel
 BuildRequires:	pkgconfig(libusb)
 BuildRequires:	bzip2-devel
-Obsoletes:	newpg
-Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
 Requires:	pinentry
 Requires:	gnupg
