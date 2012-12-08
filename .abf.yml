@@ -1,6 +1,2 @@
 sources:
-  "gnupg-2.0.19.tar.bz2:"	190c09e6688f688fb0a5cf884d01e240d957ac1f
-  "gnupg-2.0.19.tar.bz2.sig:"	f6e6830610a8629b0aad69d789373bf8ca481733
-  "gpg-agent.sh:"	4f184e0592f29490cb87cbf8993c1eabc9c5f5ff
-  "gpg-agent-xinit.sh:"	6857e0536d64483de925512f36cea5d74e02128c
-  "sysconfig-gnupg2:"	abe023a7a649b6ac21326aa3a7f0e41481770160
+  "gnupg-2.0.18.tar.bz2": 5ec2f718760cc3121970a140aeea004b64545c46
