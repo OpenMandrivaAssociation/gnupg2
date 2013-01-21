@@ -28,7 +28,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pth-devel >= 2.0.0
 BuildRequires:	docbook-utils
 BuildRequires:	readline-devel
-BuildRequires:	termcap-devel
+BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libusb)
 BuildRequires:	bzip2-devel
