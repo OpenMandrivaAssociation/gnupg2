@@ -1,2 +1,4 @@
+---
 sources:
-  "gnupg-2.0.18.tar.bz2": 5ec2f718760cc3121970a140aeea004b64545c46
+  gnupg-2.0.19.tar.bz2: 190c09e6688f688fb0a5cf884d01e240d957ac1f
+  gnupg-2.0.19.tar.bz2.sig: f6e6830610a8629b0aad69d789373bf8ca481733

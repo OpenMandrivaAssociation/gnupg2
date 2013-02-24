@@ -6,8 +6,8 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.18
-Release:	3
+Version:	2.0.19
+Release:	4
 License:	GPLv3
 Group:		File tools
 URL:		http://www.gnupg.org
