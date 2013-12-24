@@ -6,37 +6,38 @@
 
 Summary:	GNU privacy guard - a free PGP replacement
 Name:		gnupg2
-Version:	2.0.19
-Release:	12
+Version:	2.0.22
+Release:	1
 License:	GPLv3
 Group:		File tools
-Url:		http://www.gnupg.org
+URL:		http://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
-Source1:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2.sig
+Source1:	%{SOURCE0}.sig
 Source2:	gpg-agent.sh
 Source3:	gpg-agent-xinit.sh
 Source4:	sysconfig-gnupg2
 Patch0:		gnupg-1.9.3-use-ImageMagick-for-photo.patch
-Patch1:		gnupg-2.0.14-tests-s2kcount.patch
-
-BuildRequires:	docbook-utils
-BuildRequires:	sendmail-command
-BuildRequires:	bzip2-devel
-BuildRequires:	libassuan-devel
-BuildRequires:	libksba-devel >= 1.0.2
+Patch1:		gnupg-2.0.20-tests-s2kcount.patch
 BuildRequires:	openldap-devel
-BuildRequires:	pth-devel >= 2.0.0
-BuildRequires:	readline-devel
-BuildRequires:	pkgconfig(gpg-error)
-BuildRequires:	pkgconfig(libgcrypt)
+BuildRequires:	sendmail-command
+BuildRequires:	libgpg-error-devel >= 1.4
+BuildRequires:	libgcrypt-devel >= 1.2.0
+BuildRequires:	libassuan-devel >= 1.0.2
+BuildRequires:	libksba-devel >= 1.0.2
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	pkgconfig(ncursesw)
+BuildRequires:	pth-devel >= 2.0.0
+BuildRequires:	docbook-utils
+BuildRequires:	readline-devel
+BuildRequires:	termcap-devel
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libusb)
+BuildRequires:	bzip2-devel
+BuildRequires:	libassuan-devel
+Obsoletes:	newpg
+Provides:	newpg = %{version}-%{release}
 Requires:	dirmngr
 Requires:	pinentry
 Requires:	gnupg
-Provides:	newpg = %{version}-%{release}
 
 %description
 GnuPG is GNU's tool for secure communication and data storage.
@@ -45,19 +46,24 @@ It includes an advanced key management facility and is compliant
 with the proposed OpenPGP Internet standard as described in RFC2440.
 
 %prep
-%setup -qn %{pkgname}-%{version}
-%apply_patches
+%setup -q -n %{pkgname}-%{version}
+%patch0 -p1 -b .ImageMagick
+%patch1 -p1
 
 %build
 %serverbuild
+
 ./autogen.sh
+
 %configure2_5x \
 	--libexecdir=%{_libdir}/gnupg2 \
 	--enable-symcryptrun \
+	--disable-rpath \
 	--without-capabilities \
 	--with-adns=no \
 	--with-pkits-tests
 
+# no parallel make (v2.0.5 at least)
 %make
 
 # all tests must pass on i586 and x86_64
@@ -90,6 +96,7 @@ rm %{buildroot}%{_mandir}/man1/gpg-zip.1
 %find_lang %{name}
 
 %files -f %{name}.lang
+%defattr(-,root,root)
 %doc README NEWS THANKS TODO ChangeLog
 %doc doc/FAQ doc/HACKING doc/KEYSERVER doc/OpenPGP doc/TRANSLATE doc/DETAILS 
 %doc doc/examples
@@ -102,7 +109,6 @@ rm %{buildroot}%{_mandir}/man1/gpg-zip.1
 %{_bindir}/gpg-agent
 %{_bindir}/gpgconf
 %{_bindir}/kbxutil
-%{_bindir}/sc*
 %{_bindir}/watchgnupg
 %{_bindir}/gpgsm-gencert.sh
 %{_bindir}/gpgkey2ssh
@@ -122,6 +128,7 @@ rm %{buildroot}%{_mandir}/man1/gpg-zip.1
 %{_libdir}/gnupg2/gpg2keys_finger
 %{_libdir}/gnupg2/gpg2keys_hkp
 %{_libdir}/gnupg2/gpg2keys_ldap
+%{_libdir}/gnupg2/scdaemon
 %{_infodir}/gnupg.info*
 %{_mandir}/man1/gpg-agent.1*
 %{_mandir}/man1/gpg-connect-agent.1*

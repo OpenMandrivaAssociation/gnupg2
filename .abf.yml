@@ -1,4 +1,6 @@
----
+removed_sources:
+  gnupg-2.0.18.tar.bz2: 5ec2f718760cc3121970a140aeea004b64545c46
+  gnupg-2.0.20.tar.bz2: 7ddfefa37ee9da89a8aaa8f9059d251b4cd02562
+  gnupg-2.0.20.tar.bz2.sig: c47193701f79753e3c30e507586c35b1afedb47e
 sources:
-  gnupg-2.0.19.tar.bz2: 190c09e6688f688fb0a5cf884d01e240d957ac1f
-  gnupg-2.0.19.tar.bz2.sig: f6e6830610a8629b0aad69d789373bf8ca481733
+  gnupg-2.0.22.tar.bz2: 9ba9ee288e9bf813e0f1e25cbe06b58d3072d8b8

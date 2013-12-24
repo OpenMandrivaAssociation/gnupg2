@@ -1,10 +1,7 @@
-We have to use fixed s2k-count number otherwise the gpg2 would
-want to consult gpg-agent which is not yet installed in the mock
-chroot.
-diff -up gnupg-2.0.14/tests/openpgp/conventional-mdc.test.s2k gnupg-2.0.14/tests/openpgp/conventional-mdc.test
---- gnupg-2.0.14/tests/openpgp/conventional-mdc.test.s2k	2009-09-21 18:53:46.000000000 +0200
-+++ gnupg-2.0.14/tests/openpgp/conventional-mdc.test	2010-01-11 10:42:36.000000000 +0100
-@@ -21,9 +21,9 @@ for ciph in `all_cipher_algos`; do
+diff -Nur gnupg-2.0.20.old/tests/openpgp/conventional-mdc.test gnupg-2.0.20/tests/openpgp/conventional-mdc.test
+--- gnupg-2.0.20.old/tests/openpgp/conventional-mdc.test	2013-04-22 22:38:12.000000000 +0400
++++ gnupg-2.0.20/tests/openpgp/conventional-mdc.test	2013-07-26 13:48:26.059517456 +0400
+@@ -21,9 +21,9 @@
          dd if=data-80000 of=z bs=1 count=$i 2>/dev/null
      fi
      echo "Hier spricht HAL" | $GPG --passphrase-fd 0 \
@@ -16,9 +13,9 @@ diff -up gnupg-2.0.14/tests/openpgp/conventional-mdc.test.s2k gnupg-2.0.14/tests
      cmp z y || error "$ciph/$i: mismatch"
    done
  done
-diff -up gnupg-2.0.14/tests/openpgp/conventional.test.s2k gnupg-2.0.14/tests/openpgp/conventional.test
---- gnupg-2.0.14/tests/openpgp/conventional.test.s2k	2009-09-21 18:53:46.000000000 +0200
-+++ gnupg-2.0.14/tests/openpgp/conventional.test	2010-01-11 10:43:00.000000000 +0100
+diff -Nur gnupg-2.0.20.old/tests/openpgp/conventional.test gnupg-2.0.20/tests/openpgp/conventional.test
+--- gnupg-2.0.20.old/tests/openpgp/conventional.test	2013-04-22 22:38:12.000000000 +0400
++++ gnupg-2.0.20/tests/openpgp/conventional.test	2013-07-26 13:50:27.609965893 +0400
 @@ -12,8 +12,8 @@
  
  #info Checking conventional encryption
@@ -30,20 +27,20 @@ diff -up gnupg-2.0.14/tests/openpgp/conventional.test.s2k gnupg-2.0.14/tests/ope
      cmp $i y || error "$i: mismatch"
  done
  
-@@ -21,8 +21,8 @@ for a in `all_cipher_algos`; do
-     echo_n "$a "
+@@ -21,8 +21,8 @@
+     progress "$a"
      for i in plain-1 data-80000 ; do
        echo "Hier spricht HAL" | $GPG --passphrase-fd 0 \
 -					  --cipher-algo $a -c -o x --yes $i
 -      echo "Hier spricht HAL" | $GPG --passphrase-fd 0 -o y --yes x
-+					  --cipher-algo $a -c -o x --yes --s2k-count 65536 $i
++                                         --cipher-algo $a -c -o x --yes --s2k-count 65536 $i
 +      echo "Hier spricht HAL" | $GPG --passphrase-fd 0 -o y --yes --s2k-count 65536 x
        cmp $i y || error "$i: ($a) mismatch"
      done
  done
-diff -up gnupg-2.0.14/tests/openpgp/genkey1024.test.s2k gnupg-2.0.14/tests/openpgp/genkey1024.test
---- gnupg-2.0.14/tests/openpgp/genkey1024.test.s2k	2009-09-21 18:53:46.000000000 +0200
-+++ gnupg-2.0.14/tests/openpgp/genkey1024.test	2010-01-11 10:43:14.000000000 +0100
+diff -Nur gnupg-2.0.20.old/tests/openpgp/genkey1024.test gnupg-2.0.20/tests/openpgp/genkey1024.test
+--- gnupg-2.0.20.old/tests/openpgp/genkey1024.test	2013-05-10 16:55:49.000000000 +0400
++++ gnupg-2.0.20/tests/openpgp/genkey1024.test	2013-07-26 13:51:42.184443925 +0400
 @@ -10,7 +10,7 @@
  
  . $srcdir/defs.inc || exit 3
