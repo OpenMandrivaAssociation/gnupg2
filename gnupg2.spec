@@ -10,7 +10,7 @@ Version:	2.0.22
 Release:	1
 License:	GPLv3
 Group:		File tools
-URL:		http://www.gnupg.org
+URL:		https://www.gnupg.org
 Source0:	ftp://ftp.gnupg.org/gcrypt/gnupg/%{pkgname}-%{version}.tar.bz2
 Source2:	gpg-agent.sh
 Source3:	gpg-agent-xinit.sh
